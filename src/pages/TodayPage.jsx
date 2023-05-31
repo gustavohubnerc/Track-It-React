@@ -2,6 +2,7 @@ import styled from "styled-components"
 import userImg from "../assets/userImg.png"
 import ellipse from "../assets/ellipse.png"
 import vector from "../assets/vector.png"
+import { Link } from "react-router-dom"
 
 export default function TodayPage(){
     return(
@@ -27,9 +28,15 @@ export default function TodayPage(){
             </HabitCard>
         </PageContainer>
         <Menu>
-            <h1>Hábitos</h1>
-            <img src={ellipse} alt="progress" />
-            <h1>Histórico</h1>
+            <Link to="/habitos">
+                <h1>Hábitos</h1>
+            </Link>
+            <Link to="/hoje">
+                <img src={ellipse} alt="progress" />
+            </Link>
+            <Link to="/historico">
+                <h1>Histórico</h1>
+            </Link>
         </Menu>
         </>
     )
@@ -68,6 +75,9 @@ const Navbar = styled.div`
 `
 
 const Menu = styled.div`
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 70px;
     display: flex;
@@ -76,11 +86,20 @@ const Menu = styled.div`
     h1 {
         color: #52B6FF;
         font-family: 'Lexend Deca';
+        font-style: normal;
+        font-weight: 400;
         font-size: 18px;
         line-height: 22px;
         text-align: center;
     }
+    img {
+        margin-bottom: 40px;
+    }
+    a {
+        text-decoration: none;
+    }
 `
+
 const Today = styled.div`
     width: calc(100% - 35px);
     height: 50px;

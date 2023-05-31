@@ -1,8 +1,39 @@
 import styled from "styled-components"
 import userImg from "../assets/userImg.png"
 import ellipse from "../assets/ellipse.png"
+import { Link } from "react-router-dom"
+import { useState } from "react"
 
 export default function HabitsPage(){
+    const [isLoading, setIsLoading] = useState(false);
+    const [name, setName] = useState("");
+    const [days, setDays] = useState([]);
+
+    const postObj = {
+        name: name,
+        days: days
+    }
+
+    function createHabit(e){
+        e.preventDefault();
+        setIsLoading(true);
+        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits'
+        const promise = axios.post(URL, postObj);
+        promise.finally(() => {
+            setIsLoading(false);
+          });
+        promise.then((response) => {
+            console.log(response);
+            if (response.status === 201){
+                alert('Habito cadastrado!');
+                navigate("/");
+            }
+        })
+        promise.catch((error) => {
+            alert(error.response.data.message);
+        })
+    }
+
     return (
         <>
         <Navbar>
@@ -35,9 +66,15 @@ export default function HabitsPage(){
             </NoHabits>
         </PageContainer>
         <Menu>
-            <h1>Hábitos</h1>
-            <img src={ellipse} alt="progress" />
-            <h1>Histórico</h1>
+            <Link to="/habitos">
+                <h1>Hábitos</h1>
+            </Link>
+            <Link to="/hoje">
+                <img src={ellipse} alt="progress" />
+            </Link>
+            <Link to="/historico">
+                <h1>Histórico</h1>
+            </Link>
         </Menu>
         </>
     )
@@ -119,6 +156,9 @@ const NoHabits = styled.div`
 `
 
 const Menu = styled.div`
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
     height: 70px;
     display: flex;
@@ -132,6 +172,12 @@ const Menu = styled.div`
         font-size: 18px;
         line-height: 22px;
         text-align: center;
+    }
+    img {
+        margin-bottom: 40px;
+    }
+    a {
+        text-decoration: none;
     }
 `
 

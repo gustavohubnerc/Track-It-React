@@ -5,10 +5,12 @@ import SignUpPage from './pages/SignUpPage'
 import HabitsPage from './pages/HabitsPage'
 import TodayPage from './pages/TodayPage'
 import HistoricPage from './pages/HistoricPage'
+import axios from "axios"
 
 
 export default function App() {
-  
+
+  axios.defaults.headers.common['Authorization'] = 'vi2snEG0CQ9D3cV2MAQ5koyf';
 
   return (
     <BrowserRouter>
