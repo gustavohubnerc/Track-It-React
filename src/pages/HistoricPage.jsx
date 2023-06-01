@@ -1,38 +1,25 @@
 import styled from "styled-components"
-import userImg from "../assets/userImg.png"
-import ellipse from "../assets/ellipse.png"
-import { Link } from "react-router-dom"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
-export default function HistoricPage() {
+export default function HistoricPage({user, progress}) {
     return (
         <>
-        <Navbar>
-            <h1>TrackIt</h1>
-            <img src={userImg} alt="user-img" />
-        </Navbar>
+        <Navbar user={user}/>
         <PageContainer>
             <Historic>
                 <h1>Histórico</h1>
                 <h2>Em breve você poderá ver o histórico dos seus hábitos aqui!</h2>
             </Historic>
         </PageContainer>
-        <Menu>
-            <Link to="/habitos">
-                <h1>Hábitos</h1>
-            </Link>
-            <Link to="/hoje">
-                <img src={ellipse} alt="progress" />
-            </Link>
-            <Link to="/historico">
-                <h1>Histórico</h1>
-            </Link>
-        </Menu>
+        <Footer progress={progress}/>
         </>
     )
 }
 
 const PageContainer = styled.div`
   height: 740px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,51 +60,3 @@ const Historic = styled.div`
     }
 `
 
-const Navbar = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #126BA5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    h1 {
-        font-family: Playball;
-        font-size: 39px;
-        line-height: 49px;
-        color: #FFFFFF;
-        margin-left: 20px;
-    }
-    img {
-        margin-right: 20px;
-    }
-`
-
-const Menu = styled.div`
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    h1 {
-        color: #52B6FF;
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
-    }
-    img {
-        margin-bottom: 40px;
-    }
-    a {
-        text-decoration: none;
-    }
-`

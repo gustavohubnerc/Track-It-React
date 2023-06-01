@@ -1,103 +1,87 @@
 import styled from "styled-components"
-import userImg from "../assets/userImg.png"
-import ellipse from "../assets/ellipse.png"
-import vector from "../assets/vector.png"
-import { Link } from "react-router-dom"
+import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
+import dayjs from "dayjs"
+import 'dayjs/locale/pt-br'
+import DailyHabit from "../components/DailyHabit"
+import { useContext, useState, useEffect } from "react"
+import axios from "axios"
+import { ProgressContext } from "../contexts/ProgressContext"
 
-export default function TodayPage(){
+export default function TodayPage({token, user, progress}){
+    const [habits, setHabits] = useState([0]);
+    const [render, setRender] = useState(false);
+    const { setProgress } = useContext(ProgressContext);
+    const day = dayjs().locale("pt-br").format("dddd, DD/MM");
+
+    const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today";
+
+    const CONFIG = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+    };
+
+    function handleProgress() {
+        let cont = 0;
+        for (let i = 0; i < habits.length; i++) {
+          if (habits[i].done) {
+            cont++;
+          }
+        }
+        let result=0;
+        result = cont / habits.length;
+        return Math.floor(result * 100);
+    }
+    
+    useEffect(() => {
+        setProgress(handleProgress);
+    }, [habits]);
+    
+    useEffect(() => {
+        const promisse = axios.get(`${url}`, CONFIG);
+        promisse.then((e) => {
+            setHabits(e.data);
+        });
+        promisse.catch(() => alert("Algo deu errado, tente novamente mais tarde."));
+    }, [render]);
+
     return(
         <>
-        <Navbar>
-            <h1>TrackIt</h1>
-            <img src={userImg} alt="user-img" />
-        </Navbar>
+        <Navbar user={user}/>
         <PageContainer>
             <Today>
-                <h1>Segunda, 17/05</h1>
-                <h2>Nenhum hábito concluído ainda</h2>
+                <h1>{day}</h1>
+                {progress === 0 ? (
+                    <h2>Nenhum hábito concluído ainda</h2>
+                ) : (
+                    <p><span>{progress}% dos hábitos concluídos</span></p>
+                )}
+                
             </Today>
-            <HabitCard>
-                <div className="habits">
-                    <h1>Ler 1 capítulo de livro</h1>
-                    <h2>Sequência atual: 3 dias</h2>
-                    <h2>Seu recorde: 5 dias</h2>
-                </div>
-                <div className="check">
-                    <img src={vector} alt="check" />
-                </div>
-            </HabitCard>
+            {habits.map((habit) => (
+                <DailyHabit
+                habit={habit}
+                key={habit.id}
+                token={token}
+                setRender={setRender}
+                render={render}   
+                />
+            ))}            
         </PageContainer>
-        <Menu>
-            <Link to="/habitos">
-                <h1>Hábitos</h1>
-            </Link>
-            <Link to="/hoje">
-                <img src={ellipse} alt="progress" />
-            </Link>
-            <Link to="/historico">
-                <h1>Histórico</h1>
-            </Link>
-        </Menu>
+        <Footer progress={progress}/>
         </>
     )
 }
 
 const PageContainer = styled.div`
   height: 740px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 70px;
   background: #E5E5E5;
-`
-
-const Navbar = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #126BA5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    h1 {
-        font-family: Playball;
-        font-size: 39px;
-        line-height: 49px;
-        color: #FFFFFF;
-        margin-left: 20px;
-    }
-    img {
-        margin-right: 20px;
-    }
-`
-
-const Menu = styled.div`
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    h1 {
-        color: #52B6FF;
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        text-align: center;
-    }
-    img {
-        margin-bottom: 40px;
-    }
-    a {
-        text-decoration: none;
-    }
 `
 
 const Today = styled.div`
@@ -118,44 +102,6 @@ const Today = styled.div`
         font-size: 17.976px;
         line-height: 22px;
         color: #BABABA;
-    }
-
-`
-
-const HabitCard = styled.div`
-    width: calc(100% - 35px);
-    height: 95px;
-    margin-top: 30px;
-    background: #FFFFFF;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-family: 'Lexend Deca';
-    div.habits {
-        margin-left: 15px;
-        margin-top: 13px;
-    }
-    div.check {
-        width: 69px;
-        height: 69px;
-        margin: 12px;
-        background: #EBEBEB;
-        border: 1px solid #E7E7E7;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    h1 {
-        font-size: 20px;
-        line-height: 25px;
-        color: #666666;
-        margin-bottom: 7px;
-    }
-    h2 {
-        font-size: 13px;
-        line-height: 16px;
-        color: #666666;
     }
 
 `

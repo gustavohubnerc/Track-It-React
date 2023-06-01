@@ -1,36 +1,45 @@
 import styled from "styled-components"
 import logo from "../assets/logo.png"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios"
-import { ThreeDots } from "react-loader-spinner";
+import { ThreeDots } from "react-loader-spinner"
+import { UserContext } from "../contexts/UserContext"
+import { TokenContext } from "../contexts/TokenContext"
 
 
 export default function LoginPage() {
     const navigate = useNavigate();
+
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login'
+
+    const { setUser } = useContext(UserContext);
+    const { setToken } = useContext(TokenContext);
+
+    const postObj = {
+        email: email,
+        password: password
+    }
+ 
     function userLogin(e){
         e.preventDefault();
+        const promise = axios.post(`${URL}`, postObj);
         setIsLoading(true);
-        const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login'
-        const promise = axios.post(URL, {
-            email: email,
-            password: password,
-        });
-        promise.finally(() => {
-            setIsLoading(false);
-          });
         promise.then((response) => {
-            console.log(response);
+            setUser({ name: `${response.data.name}`, image: `${response.data.image}`});
             if (response.status === 200){
+                setToken(response.data.token);
+                setIsLoading(false);
                 navigate("/hoje");
             }
         })
         promise.catch((error) => {
             alert(error.response.data.message);
+            setIsLoading(false);
         })
     }
 
