@@ -30,6 +30,7 @@ export default function LoginPage() {
         const promise = axios.post(`${URL}`, postObj);
         setIsLoading(true);
         promise.then((response) => {
+            console.log(response);
             setUser({ name: `${response.data.name}`, image: `${response.data.image}`});
             if (response.status === 200){
                 setToken(response.data.token);
@@ -53,6 +54,7 @@ export default function LoginPage() {
                     className="custom-input"
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
+                    data-test="email-input"
                 />
                 <input
                     type="password"
@@ -60,8 +62,9 @@ export default function LoginPage() {
                     className="custom-input"
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isLoading}
+                    data-test="password-input"
                 />
-                <button type="submit" disabled={isLoading}>
+                <button data-test="login-btn" type="submit" disabled={isLoading}>
                     {isLoading ? (
                         <ThreeDots
                             height="70"
@@ -77,7 +80,7 @@ export default function LoginPage() {
                     )}
                 </button>
             </FormContainer>
-            <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+            <Link data-test="signup-link" to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
         </PageContainer>
     );
 }

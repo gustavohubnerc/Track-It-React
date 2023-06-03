@@ -51,6 +51,7 @@ export default function SignUpPage() {
                     className="custom-input"
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
+                    data-test="email-input"
                 />
                 <input 
                     type="password" 
@@ -58,6 +59,7 @@ export default function SignUpPage() {
                     className="custom-input"
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isLoading}
+                    data-test="password-input"
                 />
                 <input 
                     type="text" 
@@ -65,6 +67,7 @@ export default function SignUpPage() {
                     className="custom-input"
                     onChange={(e) => setProfileName(e.target.value)}
                     disabled={isLoading}
+                    data-test="user-name-input"
                 />
                 <input 
                     type="url" 
@@ -72,8 +75,9 @@ export default function SignUpPage() {
                     className="custom-input"
                     onChange={(e) => setProfilePicture(e.target.value)}
                     disabled={isLoading}
+                    data-test="user-image-input"
                 />
-                <button type="submit" disabled={isLoading}>
+                <button data-test="signup-btn" type="submit" disabled={isLoading}>
                     {isLoading ? (
                         <ThreeDots
                             height="70"
@@ -89,7 +93,7 @@ export default function SignUpPage() {
                     )}
                 </button>
             </FormContainer>
-            <Link to="/">Já tem uma conta? Faça login!</Link>
+            <Link data-test="login-link" to="/">Já tem uma conta? Faça login!</Link>
         </PageContainer>
     )
 }

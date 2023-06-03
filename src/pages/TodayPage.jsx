@@ -48,14 +48,14 @@ export default function TodayPage({token, user, progress}){
 
     return(
         <>
-        <Navbar user={user}/>
+        <Navbar data-test="header" user={user}/>
         <PageContainer>
             <Today>
-                <h1>{day}</h1>
+                <h1 data-test="today">{day}</h1>
                 {progress === 0 ? (
-                    <h2>Nenhum hábito concluído ainda</h2>
+                    <h2 data-test="today-counter">Nenhum hábito concluído ainda</h2>
                 ) : (
-                    <p><span>{progress}% dos hábitos concluídos</span></p>
+                    <p data-test="today-counter"><span>{progress}% dos hábitos concluídos</span></p>
                 )}
                 
             </Today>
@@ -69,7 +69,7 @@ export default function TodayPage({token, user, progress}){
                 />
             ))}            
         </PageContainer>
-        <Footer progress={progress}/>
+        <Footer data-test="menu" progress={progress}/>
         </>
     )
 }

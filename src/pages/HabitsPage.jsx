@@ -31,11 +31,11 @@ export default function HabitsPage({token, user, progress}) {
   
     return (
       <>
-        <Navbar user={user} />
+        <Navbar data-test="header" user={user} />
         <PageContainer>
           <MyHabits>
             <h1>Meus hábitos</h1>
-            <button onClick={() => setNewCard(!newCard)}>+</button>
+            <button data-test="habit-create-btn" onClick={() => setNewCard(!newCard)}>+</button>
           </MyHabits>
           {newCard ? (
             <NewHabits
@@ -68,7 +68,7 @@ export default function HabitsPage({token, user, progress}) {
             </NoHabits>
           )}
         </PageContainer>
-        <Footer progress={progress}/>
+        <Footer data-test="menu" progress={progress}/>
       </>
     );
   }

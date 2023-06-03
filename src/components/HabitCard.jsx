@@ -37,14 +37,14 @@ export default function HabitCard({habit, token, setRender, render}){
     }
 
     return (
-        <PageContainer>
+        <PageContainer data-test="habit-container">
             <div>
-              <p>{name}</p>
-              <button onClick={deleteHabit}>
+              <p data-test="habit-name">{name}</p>
+              <button data-test="habit-delete-btn" onClick={deleteHabit}>
                   <ion-icon name="trash-outline"></ion-icon>
               </button>
             </div>
-            <div>{weekdays.map((day, index) => checkDay(day, index))}</div>
+            <div data-test="habit-day">{weekdays.map((day, index) => checkDay(day, index))}</div>
         </PageContainer>   
     )
 }   

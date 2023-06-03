@@ -42,13 +42,14 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
     }    
 
     return (
-        <NewHabit>
+        <NewHabit data-test="habit-create-container">
             <input 
             type="text" 
             placeholder="nome do hábito" 
             className="custom-input"
             onChange={(e) => setNameHabit(e.target.value)}
             value={nameHabit}
+            data-test="habit-name-input"
             >
             </input>
             <div className="days">
@@ -63,7 +64,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                 ))}
             </div>
             <div className="submit">
-                <p onClick={() => setNewCard(false)}>Cancelar</p>
+                <p data-test="habit-create-cancel-btn" onClick={() => setNewCard(false)}>Cancelar</p>
                 {isLoading ? (
                     <ThreeDots
                         height="30"
@@ -75,7 +76,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                         wrapperClass=""                      
                     />
                 ) : (
-                    <button onClick={handleSubmit}>Salvar</button>
+                    <button data-test="habit-create-save-btn" onClick={handleSubmit}>Salvar</button>
                 )}
             </div>
         </NewHabit>

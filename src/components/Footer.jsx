@@ -6,11 +6,11 @@ import "react-circular-progressbar/dist/styles.css";
 
 export default function Footer({progress}){
     return (
-        <Menu>
-            <Link to="/habitos">
+        <Menu data-test="menu">
+            <Link data-test="habit-link" to="/habitos">
                 <h1>Hábitos</h1>
             </Link>
-            <Link to="/hoje">
+            <Link data-test="today-link" to="/hoje">
                 <CircularProgressbar
                     value={progress}
                     text={"Hoje"}
@@ -23,7 +23,7 @@ export default function Footer({progress}){
                     })}
                 />
             </Link>
-            <Link to="/historico">
+            <Link data-test="history-link" to="/historico">
                 <h1>Histórico</h1>
             </Link>
         </Menu>

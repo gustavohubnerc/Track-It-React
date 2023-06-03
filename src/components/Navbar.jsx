@@ -4,9 +4,9 @@ export default function Navbar({user}){
 
     return(
         <>
-        <Header>
+        <Header data-test="header">
             <h1>TrackIt</h1>
-            <img src={user.image} alt="user-img" />
+            <img data-test="avatar" src={user.image} alt="user-img" />
         </Header>
         </>
     )

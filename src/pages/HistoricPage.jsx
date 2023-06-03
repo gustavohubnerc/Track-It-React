@@ -5,14 +5,14 @@ import Footer from "../components/Footer"
 export default function HistoricPage({user, progress}) {
     return (
         <>
-        <Navbar user={user}/>
+        <Navbar data-test="header" user={user}/>
         <PageContainer>
             <Historic>
                 <h1>Histórico</h1>
                 <h2>Em breve você poderá ver o histórico dos seus hábitos aqui!</h2>
             </Historic>
         </PageContainer>
-        <Footer progress={progress}/>
+        <Footer data-test="menu" progress={progress}/>
         </>
     )
 }

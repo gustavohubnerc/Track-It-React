@@ -43,27 +43,27 @@ export default function TodayHabit({ habit, token, setRender, render }) {
         }
     }
     return (
-        <Container>
-        <HabitDiv
-          checked={checked}
-          highestSequence={highestSequence}
-          currentSequence={currentSequence}
-        >
-          <h1>{name}</h1>
-          <p>
-            Sequência atual:
-            <span> {currentSequence} </span>
-            dias
-          </p>
-          <p>
-            Seu recorde: <span>{highestSequence} </span>
-            dias
-          </p>
-        </HabitDiv>
-        <Icon onClick={() => handleClick(checked)} checked={checked}>
-          <ion-icon name="checkmark-outline"></ion-icon>
-        </Icon>
-      </Container>
+        <Container data-test="today-habit-container">
+          <HabitDiv
+            checked={checked}
+            highestSequence={highestSequence}
+            currentSequence={currentSequence}
+          >
+            <h1 data-test="today-habit-name">{name}</h1>
+            <p>
+              Sequência atual:
+              <span data-test="today-habit-sequence"> {currentSequence} </span>
+              dias
+            </p>
+            <p>
+              Seu recorde: <span data-test="today-habit-record">{highestSequence} </span>
+              dias
+            </p>
+          </HabitDiv>
+          <Icon data-test ="today-habit-check-btn" onClick={() => handleClick(checked)} checked={checked}>
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </Icon>
+        </Container>
     )
 }    
 
