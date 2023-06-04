@@ -6,7 +6,8 @@ import "react-circular-progressbar/dist/styles.css";
 import { useNavigate } from "react-router-dom"
 
 export default function Footer({progress}){
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
     return (
         <Menu data-test="menu">
             <Link data-test="habit-link" to="/habitos">
