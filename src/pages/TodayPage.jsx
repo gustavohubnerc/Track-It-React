@@ -46,33 +46,35 @@ export default function TodayPage({token, user, progress}){
         promisse.catch(() => alert("Algo deu errado, tente novamente mais tarde."));
     }, [render]);
 
-    return(
+    return (
         <>
-        <Navbar data-test="header" user={user}/>
-        <PageContainer>
+          <Navbar data-test="header" user={user} />
+          <PageContainer>
             <Today>
-                <h1 data-test="today">{day}</h1>
-                {progress === 0 ? (
-                    <h2 data-test="today-counter">Nenhum hábito concluído ainda</h2>
-                ) : (
-                    <p data-test="today-counter"><span>{progress}% dos hábitos concluídos</span></p>
-                )}
-                
+              <h1 data-test="today">{day.charAt(0).toUpperCase() + day.slice(1)}</h1>
+              {progress === 0 ? (
+                <h2 data-test="today-counter">Nenhum hábito concluído ainda</h2>
+              ) : (
+                <p data-test="today-counter">
+                  <span>{progress}% dos hábitos concluídos</span>
+                </p>
+              )}
             </Today>
             {habits.map((habit) => (
-                <DailyHabit
+              <DailyHabit
                 habit={habit}
                 key={habit.id}
                 token={token}
                 setRender={setRender}
-                render={render}   
-                />
-            ))}            
-        </PageContainer>
-        <Footer data-test="menu" progress={progress}/>
+                render={render}
+              />
+            ))}
+          </PageContainer>
+          <Footer data-test="menu" progress={progress} />
         </>
-    )
-}
+    );
+}      
+
 
 const PageContainer = styled.div`
   height: 740px;

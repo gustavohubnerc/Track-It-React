@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import axios from "axios"
+import dump from "../assets/dump.svg"
 
 export default function HabitCard({habit, token, setRender, render}){
     const { id, name, days } = habit;
@@ -41,7 +42,7 @@ export default function HabitCard({habit, token, setRender, render}){
             <div>
               <p data-test="habit-name">{name}</p>
               <button data-test="habit-delete-btn" onClick={deleteHabit}>
-                  <ion-icon name="trash-outline"></ion-icon>
+                  <img src={dump} alt="deletar hábito"/>
               </button>
             </div>
             <div data-test="habit-day">{weekdays.map((day, index) => checkDay(day, index))}</div>
@@ -68,12 +69,16 @@ const PageContainer = styled.div`
   border-radius: 5px;
   margin-bottom: 5px;
   padding: 10px;
+  
   div {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
     p {
       display: flex;
+      font-family: 'Lexend Deca';
       font-size: 20px;
       flex-wrap: wrap;
     }

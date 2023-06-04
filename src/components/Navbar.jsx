@@ -1,12 +1,13 @@
 import styled from "styled-components"
 
-export default function Navbar({user}){
+export default function Navbar(){
+    const image = localStorage.getItem('Image')
 
     return(
         <>
         <Header data-test="header">
             <h1>TrackIt</h1>
-            <img data-test="avatar" src={user.image} alt="user-img" />
+            <img data-test="avatar" src={image} alt="user-img" />
         </Header>
         </>
     )

@@ -3,14 +3,16 @@ import { Link } from "react-router-dom"
 import { CircularProgressbar } from "react-circular-progressbar";
 import { buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useNavigate } from "react-router-dom"
 
 export default function Footer({progress}){
+    const navigate = useNavigate()
     return (
         <Menu data-test="menu">
             <Link data-test="habit-link" to="/habitos">
                 <h1>Hábitos</h1>
             </Link>
-            <Link data-test="today-link" to="/hoje">
+            <div data-test="today-link" onClick={() => navigate("/hoje")}>
                 <CircularProgressbar
                     value={progress}
                     text={"Hoje"}
@@ -22,7 +24,8 @@ export default function Footer({progress}){
                         trailColor: "transparent",
                     })}
                 />
-            </Link>
+            </div>    
+
             <Link data-test="history-link" to="/historico">
                 <h1>Histórico</h1>
             </Link>
@@ -48,11 +51,11 @@ const Menu = styled.div`
         line-height: 22px;
         text-align: center;
     }
-    img {
-        width: 110px;
-        margin-bottom: 70px;
-    }
     a {
         text-decoration: none;
+    }
+    div {
+        width: 150px;
+        height: 150px;
     }
 `
