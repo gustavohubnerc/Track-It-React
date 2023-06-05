@@ -1,27 +1,20 @@
 import styled from "styled-components"
 import { useState } from "react"
 
-export default function Weekdays({day, habitDays, setHabitDays, index}){
-    const [ selectedDays, setSelectedDays ] = useState(false);
+export default function Weekdays({ day, habitDays, setHabitDays, index }) {
+  const [selectedDays, setSelectedDays] = useState(false);
 
-    function handleClick(){
-        setSelectedDays(!selectedDays);
-        if (!selectedDays){
-            setHabitDays([...habitDays, (index)]);
-        } else {
-            const removeDays = habitDays.filter(element => element !== index);
-            setHabitDays(removeDays);
-        }
+  function handleClick() {
+    setSelectedDays(!selectedDays);
+    if (habitDays.includes(index)) {
+      const removeDays = habitDays.filter((element) => element !== index);
+      setHabitDays(removeDays);
+    } else {
+      setHabitDays([...habitDays, index]);
     }
+  }
 
-    return(
-        <PageContainer data-test="habit-day" onClick={handleClick} selectedDays={selectedDays}>
-            {day}    
-        </PageContainer>
-    )
-}
-
-const PageContainer = styled.button`
+  const PageContainer = styled.button`
     width: 30px;
     height: 30px;
     color: ${(props) => (props.selected ? "#FFFFFF" : "#DBDBDB")};
@@ -35,4 +28,16 @@ const PageContainer = styled.button`
     font-size: 20px;
     line-height: 25px;
     margin-left: 4px;
-`
+  `;
+
+  return (
+    <PageContainer
+      data-test="habit-day"
+      selected={selectedDays}
+      onClick={handleClick}
+    >
+      {day}
+    </PageContainer>
+  );
+}
+

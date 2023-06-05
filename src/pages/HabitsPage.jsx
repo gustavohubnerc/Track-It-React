@@ -15,20 +15,19 @@ export default function HabitsPage({token, user, progress}) {
     const [render, setRender] = useState(true);
     const [deleteHabit, setDeleteHabit] = useState(false);
   
-    const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
-  
-    const CONFIG = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  
     useEffect(() => {
+      const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
+    
+      const CONFIG = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
       const promise = axios.get(`${url}`, CONFIG);
       promise
         .then((response) => setHabits(response.data))
         .catch((error) => console.log(error));
-    }, [render]);
+    }, [habits, deleteHabit]);
   
     return (
       <>
