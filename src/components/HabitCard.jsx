@@ -3,7 +3,7 @@ import axios from "axios"
 import dump from "../assets/dump.svg"
 
 export default function HabitCard({habit, setDeleteHabit, deleteHabit}) {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("Token");
     const { id, name, days } = habit;
     const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
@@ -24,16 +24,16 @@ export default function HabitCard({habit, setDeleteHabit, deleteHabit}) {
         }
     };
 
+    const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`;
+
+    const CONFIG = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
     function handleDelete() {
-      const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`;
-
-      const CONFIG = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-  
+     
       if (window.confirm("Você tem certeza que quer apagar esse hábito?")) {
         const promise = axios.delete(URL, CONFIG);
         promise.then(() => setDeleteHabit(!deleteHabit));

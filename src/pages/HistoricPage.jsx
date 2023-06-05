@@ -1,8 +1,11 @@
 import styled from "styled-components"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import { useContext } from "react";
+import { ProgressContext } from "../contexts/ProgressContext";
 
-export default function HistoricPage({user, progress}) {
+export default function HistoricPage({user}) {
+    const { progress } = useContext(ProgressContext);
     return (
         <>
         <Navbar data-test="header" user={user}/>

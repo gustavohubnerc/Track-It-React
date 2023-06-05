@@ -22,7 +22,8 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
         },
     };
 
-    function handleSubmit(){
+    function handleSubmit(e){
+        e.preventDefault();
         if (nameHabit === ""){
             alert('Você precisa inserir o nome do hábito');
             return;
@@ -42,7 +43,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
     }    
 
     return (
-        <NewHabit data-test="habit-create-container">
+        <NewHabit onSubmit={handleSubmit} data-test="habit-create-container">
             <input 
             type="text" 
             placeholder="nome do hábito" 
@@ -50,6 +51,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
             onChange={(e) => setNameHabit(e.target.value)}
             value={nameHabit}
             data-test="habit-name-input"
+            disabled={isLoading}
             >
             </input>
             <div className="days">
@@ -60,6 +62,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                         index={index}
                         setHabitDays={setHabitDays}
                         habitDays={habitDays}
+                        disabled={isLoading}
                     />    
                 ))}
             </div>
@@ -76,7 +79,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                         wrapperClass=""                      
                     />
                 ) : (
-                    <button data-test="habit-create-save-btn" onClick={handleSubmit}>Salvar</button>
+                    <button data-test="habit-create-save-btn" type="submit">Salvar</button>
                 )}
             </div>
         </NewHabit>

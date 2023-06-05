@@ -1,19 +1,21 @@
 import styled from "styled-components"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import NewHabits from "../components/NewHabits"
 import HabitCard from "../components/HabitCard"
 import axios from "axios"
+import { ProgressContext } from "../contexts/ProgressContext"
 
-export default function HabitsPage({token, user, progress}) {
-  
+
+export default function HabitsPage({token, user}) {
     const [isLoading, setIsLoading] = useState(false);
     const [habits, setHabits] = useState([]);
     const [newCard, setNewCard] = useState(false);
     const [nameHabit, setNameHabit] = useState("");
     const [render, setRender] = useState(true);
     const [deleteHabit, setDeleteHabit] = useState(false);
+    const { progress } = useContext(ProgressContext);
   
     useEffect(() => {
       const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
@@ -23,7 +25,7 @@ export default function HabitsPage({token, user, progress}) {
           Authorization: `Bearer ${token}`,
         },
       };
-      const promise = axios.get(`${url}`, CONFIG);
+      const promise = axios.get(url, CONFIG);
       promise
         .then((response) => setHabits(response.data))
         .catch((error) => console.log(error));
