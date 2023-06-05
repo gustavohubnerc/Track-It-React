@@ -150,19 +150,3 @@ const NewHabit = styled.form`
         }
     }
 `
-
-const StyledButton = styled.button`
-    width: 30px;
-    height: 30px;
-    background: #FFFFFF;
-    color: #D4D4D4;
-    font-size: 20px;
-    border: 1px solid #D5D5D5;
-    border-radius: 5px;
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 25px;
-    margin-left: 4px;
-`
