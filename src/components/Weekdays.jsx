@@ -32,6 +32,7 @@ export default function Weekdays({ day, habitDays, setHabitDays, index }) {
 
   return (
     <PageContainer
+      data-test="habit-day"
       selected={selectedDays}
       onClick={handleClick}
     >
