@@ -49,7 +49,7 @@ export default function HabitCard({habit, setDeleteHabit, deleteHabit}) {
                   <img src={dump} alt="deletar hábito"/>
               </button>
             </div>
-            <div>{weekdays.map((day, index) => checkDay(day, index))}</div>
+            <div data-test="habit-day">{weekdays.map((day, index) => checkDay(day, index))}</div>
         </PageContainer>   
     )
 }   

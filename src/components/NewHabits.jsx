@@ -31,12 +31,12 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
         setIsLoading(true);
    
         const promise = axios.post(`${url}`, postObj, CONFIG);
-        promise.then((response) => {
+        promise.then(() => {
             setNewCard(false);
             setRender(!render);
             setIsLoading(false);
         });
-        promise.catch((error) => {
+        promise.catch(() => {
             setIsLoading(false); 
         })
     }    
@@ -60,7 +60,6 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                         index={index}
                         setHabitDays={setHabitDays}
                         habitDays={habitDays}
-                        data-test="habit-day"
                     />    
                 ))}
             </div>

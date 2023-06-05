@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useState } from "react"
 
-export default function Weedays({day, habitDays, setHabitDays, index}){
+export default function Weekdays({day, habitDays, setHabitDays, index}){
     const [ selectedDays, setSelectedDays ] = useState(false);
 
     function handleClick(){
@@ -9,12 +9,13 @@ export default function Weedays({day, habitDays, setHabitDays, index}){
         if (!selectedDays){
             setHabitDays([...habitDays, (index)]);
         } else {
-            setHabitDays(habitDays.filter(element => element !== index));
+            const removeDays = habitDays.filter(element => element !== index);
+            setHabitDays(removeDays);
         }
     }
 
     return(
-        <PageContainer onClick={handleClick} selectedDays={selectedDays}>
+        <PageContainer data-test="habit-day" onClick={handleClick} selectedDays={selectedDays}>
             {day}    
         </PageContainer>
     )
