@@ -45,13 +45,13 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
     return (
         <NewHabit onSubmit={handleSubmit} data-test="habit-create-container">
             <input 
-            type="text" 
-            placeholder="nome do hábito" 
-            className="custom-input"
-            onChange={(e) => setNameHabit(e.target.value)}
-            value={nameHabit}
-            data-test="habit-name-input"
-            disabled={isLoading}
+                type="text" 
+                placeholder="nome do hábito" 
+                className="custom-input"
+                onChange={(e) => setNameHabit(e.target.value)}
+                value={nameHabit}
+                data-test="habit-name-input"
+                disabled={isLoading}
             >
             </input>
             <div className="days">
@@ -63,6 +63,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                         setHabitDays={setHabitDays}
                         habitDays={habitDays}
                         disabled={isLoading}
+                        data-test="habit-day"
                     />    
                 ))}
             </div>

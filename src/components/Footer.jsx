@@ -39,10 +39,12 @@ const Menu = styled.div`
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 70px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    z-index: 1;
+    background-color: #FFFFFF;
     h1 {
         color: #52B6FF;
         font-family: 'Lexend Deca';
@@ -56,7 +58,7 @@ const Menu = styled.div`
         text-decoration: none;
     }
     div {
-        width: 150px;
-        height: 150px;
+        width: 130px;
+        height: 130px;
     }
 `
