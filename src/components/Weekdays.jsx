@@ -14,7 +14,7 @@ export default function Weedays({day, habitDays, setHabitDays, index}){
     }
 
     return(
-        <PageContainer data-test="habit-day" onClick={handleClick} selectedDays={selectedDays}>
+        <PageContainer onClick={handleClick} selectedDays={selectedDays}>
             {day}
         </PageContainer>
     )
@@ -23,8 +23,8 @@ export default function Weedays({day, habitDays, setHabitDays, index}){
 const PageContainer = styled.button`
     width: 30px;
     height: 30px;
-    color: ${(props) => (props.selected ? "white" : "#DBDBDB")};
-    background-color: ${(props) => (props.selected ? "#CFCFCF" : "white")};
+    color: ${(props) => (props.selected ? "#FFFFFF" : "#DBDBDB")};
+    background-color: ${(props) => (props.selected ? "#CFCFCF" : "#FFFFFF")};
     font-size: 20px;
     border: 1px solid #D5D5D5;
     border-radius: 5px;

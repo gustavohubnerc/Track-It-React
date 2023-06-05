@@ -54,12 +54,10 @@ export default function TodayHabit({ habit, token, setRender, render }) {
               <h1 data-test="today-habit-name">{name}</h1>
               <p>
                 Sequência atual:
-                <span data-test="today-habit-sequence"> {currentSequence} </span>
-                dias
+                <span data-test="today-habit-sequence"> {currentSequence} dias</span>    
               </p>
               <p>
-                Seu recorde: <span data-test="today-habit-record">{highestSequence} </span>
-                dias
+                Seu recorde: <span data-test="today-habit-record">{highestSequence} dias</span>               
               </p>
             </HabitDiv>
             <Icon data-test ="today-habit-check-btn" onClick={() => handleClick(checked)} checked={checked}>
@@ -128,6 +126,7 @@ const Icon = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${(props) => (props.checked ? "#8FC549" : "#EBEBEB")};
+  border: ${(props) => (props.checked ? "none" : "1px solid #E7E7E7")};
   border-radius: 5px;
   cursor: pointer;
 `  

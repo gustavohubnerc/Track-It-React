@@ -60,6 +60,7 @@ export default function NewHabits({token, render, setRender, isLoading, setIsLoa
                         index={index}
                         setHabitDays={setHabitDays}
                         habitDays={habitDays}
+                        data-test="habit-day"
                     />    
                 ))}
             </div>

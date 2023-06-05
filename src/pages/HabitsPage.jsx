@@ -13,6 +13,7 @@ export default function HabitsPage({token, user, progress}) {
     const [newCard, setNewCard] = useState(false);
     const [nameHabit, setNameHabit] = useState("");
     const [render, setRender] = useState(true);
+    const [deleteHabit, setDeleteHabit] = useState(false);
   
     const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits";
   
@@ -57,6 +58,8 @@ export default function HabitsPage({token, user, progress}) {
                 token={token}
                 setRender={setRender}
                 render={render}
+                deleteHabit={deleteHabit}
+                setDeleteHabit={setDeleteHabit}
               />
             ))
           ) : (

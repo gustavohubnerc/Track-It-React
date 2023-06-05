@@ -17,7 +17,7 @@ export default function LoginPage() {
 
     const URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login'
 
-    const { setUser } = useContext(UserContext);
+    //const { setUser } = useContext(UserContext);
     const { setToken } = useContext(TokenContext);
 
     const postObj = {
@@ -31,8 +31,9 @@ export default function LoginPage() {
         setIsLoading(true);
         promise.then((response) => {
             console.log(response);
-            setUser({ name: `${response.data.name}`, image: `${response.data.image}`});
             if (response.status === 200){
+                localStorage.setItem('Image', response.data.image);
+                localStorage.setItem('Token', response.data.token);
                 setToken(response.data.token);
                 setIsLoading(false);
                 navigate("/hoje");

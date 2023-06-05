@@ -2,10 +2,11 @@ import styled from "styled-components"
 import axios from "axios"
 import dump from "../assets/dump.svg"
 
-export default function HabitCard({habit, token, setRender, render}){
+export default function HabitCard({habit, setDeleteHabit, deleteHabit}) {
+    const token = localStorage.getItem("token");
     const { id, name, days } = habit;
     const weekdays = ["D", "S", "T", "Q", "Q", "S", "S"];
-    const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/";
+
     const checkDay = (day, index) => {
         if (days.includes(index)) {
           return (
@@ -23,25 +24,28 @@ export default function HabitCard({habit, token, setRender, render}){
         }
     };
 
-    const CONFIG = {
+
+    function handleDelete() {
+      const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`;
+
+      const CONFIG = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-    };
-
-    function deleteHabit(){
-        const promise = axios.delete(`${url}/habits/${id}`, CONFIG, {
-            status: "Sucesso",
-        });
-        promise.then((response) => setRender(!render));
-        promise.catch((error) => console.log(error.response.data.message));
+      };
+  
+      if (window.confirm("Você tem certeza que quer apagar esse hábito?")) {
+        const promise = axios.delete(URL, CONFIG);
+        promise.then(() => setDeleteHabit(!deleteHabit));
+      }
     }
+  
 
     return (
         <PageContainer data-test="habit-container">
             <div>
               <p data-test="habit-name">{name}</p>
-              <button data-test="habit-delete-btn" onClick={deleteHabit}>
+              <button data-test="habit-delete-btn" onClick={handleDelete}>
                   <img src={dump} alt="deletar hábito"/>
               </button>
             </div>
@@ -58,8 +62,8 @@ const Day = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(props) => (props.selected ? "white" : "#DBDBDB")};
-  background-color: ${(props) => (props.selected ? "#CFCFCF" : "white")};
+  color: ${(props) => (props.selected ? "#FFFFFF" : "#DBDBDB")};
+  background-color: ${(props) => (props.selected ? "#CFCFCF" : "#FFFFFF")};
 `;
 
 const PageContainer = styled.div`

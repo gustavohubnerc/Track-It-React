@@ -52,6 +52,7 @@ export default function SignUpPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
                     data-test="email-input"
+                    required
                 />
                 <input 
                     type="password" 
@@ -60,6 +61,7 @@ export default function SignUpPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isLoading}
                     data-test="password-input"
+                    required
                 />
                 <input 
                     type="text" 
@@ -68,6 +70,7 @@ export default function SignUpPage() {
                     onChange={(e) => setProfileName(e.target.value)}
                     disabled={isLoading}
                     data-test="user-name-input"
+                    required
                 />
                 <input 
                     type="url" 
@@ -76,6 +79,7 @@ export default function SignUpPage() {
                     onChange={(e) => setProfilePicture(e.target.value)}
                     disabled={isLoading}
                     data-test="user-image-input"
+                    required
                 />
                 <button data-test="signup-btn" type="submit" disabled={isLoading}>
                     {isLoading ? (
