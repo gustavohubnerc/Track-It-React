@@ -14,8 +14,8 @@ export default function Weedays({day, habitDays, setHabitDays, index}){
     }
 
     return(
-        <PageContainer data-test="habit-day" onClick={handleClick} selectedDays={selectedDays}>
-            <div data-test="habit-day">{day}</div>     
+        <PageContainer onClick={handleClick} selectedDays={selectedDays}>
+            {day}    
         </PageContainer>
     )
 }
