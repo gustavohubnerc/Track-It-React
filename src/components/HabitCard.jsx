@@ -10,13 +10,13 @@ export default function HabitCard({habit, setDeleteHabit, deleteHabit}) {
     const checkDay = (day, index) => {
         if (days.includes(index)) {
           return (
-            <Day selected={true} key={index}>
+            <Day data-test="habit-day" selected={true} key={index}>
               {day}
             </Day>
           );
         } else {
           return (
-            <Day selected={false} key={index}>
+            <Day data-test="habit-day" selected={false} key={index}>
               {" "}
               {day}
             </Day>
@@ -49,7 +49,10 @@ export default function HabitCard({habit, setDeleteHabit, deleteHabit}) {
                   <img src={dump} alt="deletar hábito"/>
               </button>
             </div>
-            <div>{weekdays.map((day, index) => checkDay(day, index))}</div>
+            <div data-test="habit-day">{weekdays.map((day, index) => {
+              checkDay(day, index)
+            })}
+            </div>
         </PageContainer>   
     )
 }   
